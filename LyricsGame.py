@@ -6,7 +6,7 @@ ask = Ask(app, '/')
 
 @ask.intent('StartGame')
 def start_game():
-    return
+    return statement("Hello")
 
 if __name__ == '__main__':
     app.run(debug=True)
