@@ -1,0 +1,36 @@
+{
+    "message":
+    {
+        "header":
+        {
+            "status_code": 200,
+            "execute_time": 0.004040002822876
+        },
+        "body":
+        {
+            "lyrics":
+            {
+                "lyrics_id": 13156167,
+                "can_edit": 0,
+                "locked": 1,
+                "published_status": 3,
+                "action_requested": "",
+                "verified": 0,
+                "restricted": 0,
+                "instrumental": 0,
+                "explicit": 0,
+                "lyrics_body": "For all the times that you rain on my parade\nAnd all the clubs you get in using my name\nYou think you broke my heart, oh girl for goodness sake\nYou think I'm crying on my own, well I ain't\n\nAnd I didn't wanna write a song\nCause I didn't want anyone thinking I still care\nI don't but, you still hit my phone up\nAnd baby I be movin' on\nAnd I think you should be somethin'\nI don't wanna hold back, maybe you should know that\n\nMy mama don't like you and she likes everyone\nAnd I never like to admit that I was wrong\nAnd I've been so caught up in my job, didn't see what's going on\nBut now I know, I'm better sleeping on my own\n\nCause if you like the way you look that much\nOh, baby, you should go and love yourself\n...\n\n******* This Lyrics is NOT for Commercial use *******",
+                "lyrics_language": "en",
+                "lyrics_language_description": "English",
+                "script_tracking_url": "https:\/\/tracking.musixmatch.com\/t1.0\/m_js\/e_1\/sn_0\/l_13156167\/su_0\/rs_0\/tr_3vUCAJ15ggTIkvGT6zZdRiU36a7WD9suKDoqimvBDLOObRHZ7IZBiJX1LmVai9nT_7GzSXBRc8IuTbMOkSnAOSzAUALfYeNrkc9tEdYgE3RHDItrc0AxB_0NEWqEUHKFIgxB9nPw6ET-e4LoOzlqn-y8AToskjRAnd1euwNdHZYA6SlqmC5m5a-L9sUyAX-gihyAQ9g-bt4P9Xyx2VsQI71DehNhXFaDuTSsVcW8ZP8QFUEyjjQ3lCKwg_g6f7kBuE5_bKY0Ix0A3vreeBhw7SiaSYNofx_s8A6iZTqkREz67X4iiy5ZOAXf2s8XqkEPN7xE6MgCGfn7nbDn9hmKHo_lOUASxwA0Ut9B8r1rIueIAIobCyJZuAfm1Jj9jh0vrDkXhTlJvOlv901yRi6-9E0nvPvLKlUD27Mn4R0gKYliHg\/",
+                "pixel_tracking_url": "https:\/\/tracking.musixmatch.com\/t1.0\/m_img\/e_1\/sn_0\/l_13156167\/su_0\/rs_0\/tr_3vUCAHQzavq6gWn_w1XipScf0VFb9e-FLcWpXKF9nbEc0-InXqsMpCVj9sEH__63jGj58iCDkQKkWGDTb1ZBDy0B4V85U-LU99s60fzSNzWES5xDlufrkn4ih5hulqtd1RBlbxxPoznVnxgIAQjlQPkrz5FQ43G9U7NjXQ8aUBWakq-eDHk05-cOnjXxIr3JMMkoh-OvB-MCgmzf_4u4f6L-XrY6JHCPqkQ_pW9Q-0AxhUrfyesN5pWhim_ln-5Xe0myIn5JEbigV-pPim9zFGf1265k_kiBj73cPTELojvB6q5LQayjbUTCufzcqSy2yKyvMF3XTJEn6mJWy6kq24_HvAnfyfxO0fDt2gtcXDFwCBq8T-UU_wfWXdyFsROgK-Do6eC5wZ11IR-18aTvonnTvA89bLcvVRdioFajCA9Fjw\/",
+                "html_tracking_url": "https:\/\/tracking.musixmatch.com\/t1.0\/m_html\/e_1\/sn_0\/l_13156167\/su_0\/rs_0\/tr_3vUCACnEWDjCwVv-YzJ_ZxfnO5-VFtmfIJQW_2IOqT6qLJ-dlq5V5G8pJzMilOpbSjgCRHRnGgD_JzThmW6tysqCOAdjEZSoJjGnj1q5QyaSes9gqJGEgKQ00RRAzfnWbIqUuJqIVQZzU0nk07sv0mNB5_m-eYPf0jiR3yGuXueCPUOyTcDWfNfVgDzAQPdW-AZfaMl6yZz1uPFyLGfNCMKjmunTlF0db7p_EbUuzymAsXryfVN3u4cbki3prJl_EVcra4AkRjxQqNJkfeQX6p6n7VtGDT3KSwgkdeljTXX_Wt-x171LW1sfKSJdydh3hdZP9IbIADzBnUU2YqKT8stjeTm2TISoezZ0SSowGRd4YzKQKhCEjeSJaq8fF3EwTnptts9dDS1NBGlNbZxkyot4Wisqfkn69QwFO1k-OLYerg\/",
+                "lyrics_copyright": "Lyrics powered by www.musixmatch.com. This Lyrics is NOT for Commercial use and only 30% of the lyrics are returned.",
+                "writer_list": [],
+                "publisher_list": [],
+                "backlink_url": "https:\/\/www.musixmatch.com\/lyrics\/Justin-Bieber\/Love-Yourself?utm_source=application&utm_campaign=api&utm_medium=",
+                "updated_time": "2015-12-15T14:50:04Z"
+            }
+        }
+    }
+}
