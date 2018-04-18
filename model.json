@@ -16,14 +16,63 @@
                     "samples": []
                 },
                 {
-                    "name": "StartGame",
-                    "slots": [],
+                    "name": "AnswerIntent",
+                    "slots": [
+                        {
+                            "name": "lyric",
+                            "type": "GenericLyrics"
+                        }
+                    ],
                     "samples": [
-                        "start a new lyrics game"
+                        "{lyric}"
+                    ]
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": [
+                        "sure",
+                        "yeah",
+                        "okay",
+                        "of course",
+                        "yes"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": [
+                        "no thanks",
+                        "no thank you",
+                        "no"
                     ]
                 }
             ],
-            "types": []
+            "types": [
+                {
+                    "name": "GenericLyrics",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "word1 word2 word3 word4"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "word1 word2 word3"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "word1 word2"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "word1"
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     }
 }
