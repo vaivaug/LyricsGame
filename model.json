@@ -30,6 +30,9 @@
                 {
                     "name": "AMAZON.YesIntent",
                     "samples": [
+                        "yes I would like to",
+                        "yes I would",
+                        "yes I do",
                         "sure",
                         "yeah",
                         "okay",
@@ -40,6 +43,7 @@
                 {
                     "name": "AMAZON.NoIntent",
                     "samples": [
+                        "no I don't",
                         "no thanks",
                         "no thank you",
                         "no"
