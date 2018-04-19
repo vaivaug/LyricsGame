@@ -20,6 +20,7 @@ def start_game():
     session.attributes['counter'] = 0
     session.attributes['win_counter'] = 0
     session.attributes['game_state'] = False
+    session.attributes['songs'] = [lyrics for lyrics in listdir("data/") if lyrics.endswith(".txt")]
     return question("Welcome to the Lyrics Game. I will say the first two lines of a song and you will have to say the next line. Would you like to play?")
 
 
@@ -35,19 +36,24 @@ def say_yes():
 
 
 def random_song():
-    lyrics_list = [lyrics for lyrics in listdir("data/") if lyrics.endswith(".txt")]
-    return random.choice(lyrics_list)
+    current_song = random.choice(session.attributes['songs'])
+    session.attributes['songs'].remove(current_song)
+    return current_song
 
 
 @ask.intent('AMAZON.NoIntent')
 def say_no():
     if session.attributes['game_state']:
         return answer("No")
+    return end_game("")
+
+
+def end_game(response):
     win_counter = session.attributes['win_counter']
     counter = session.attributes['counter']
     if counter > 0:
-        return statement("Thanks for playing. You got " + str(win_counter) + " out of " + str(counter) + " correct!")
-    return statement('<speak> Goodbye. <amazon:effect name="whispered"> Why did you start the game then?</amazon:effect>. </speak>')
+        return statement(response + "Thanks for playing. You got " + str(win_counter) + " out of " + str(counter) + " correct!")
+    return statement('<speak> Goodbye. <prosody volume="soft"> Why did you start the game then?</prosody>. </speak>')
 
 
 @ask.intent('AnswerIntent')
@@ -60,12 +66,14 @@ def answer(lyric):
 
     if compare_lyric(lyric, correct_lyric):
         session.attributes['win_counter'] += 1
-        return question("Correct. Would you like to play another round?")
+        response = "Correct."
+    else:
+        response = "Incorrect. The lyrics were " + correct_lyric+"."
 
-    return question("Incorrect. The lyrics were " + correct_lyric + ". Would you like to play another round?")
+    if not session.attributes['songs']:
+        return end_game(response + " You've completed the game. ")
 
-
-
+    return question(response + " Would you like to play another round?")
 
 
 def sanitise(lyric):
