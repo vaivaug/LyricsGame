@@ -9,25 +9,25 @@ ask = Ask(app, '/')
 logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
 
-def getLyrics(file):
+def get_lyric(file):
     data = json.load(open(file))
-    lyrics = data['message']['body']['lyrics']['lyrics_body'].split('\n')
-    return lyrics[:-3]
+    lyric = data['message']['body']['lyrics']['lyrics_body'].split('\n')
+    return lyric[:-3]
 
 
 @ask.launch
 def start_game():
     session.attributes['counter'] = 0
     session.attributes['win_counter'] = 0
-    return question("Welcome to the Lyrics Game. I will say the first two lines of a song and you will have to say the next line. Would you like to play?")
+    return question("Welcome to the lyric Game. I will say the first two lines of a song and you will have to say the next line. Would you like to play?")
 
 
 @ask.intent('AMAZON.YesIntent')
 def say_yes():
-    file = "data/gotye-lyrics.json"
-    lyrics = getLyrics(file)
-    session.attributes['correct_lyrics'] = lyrics[2]
-    return question('<speak> Get ready! <break time ="1s"/>' + lyrics[0] + '<break time="500ms"/> ' + lyrics[1]+ '</speak>')
+    file = "data/taylor-swift-lyrics.json"
+    lyric = get_lyric(file)
+    session.attributes['correct_lyric'] = lyric[2]
+    return question('<speak> Get ready! <break time ="1s"/>' + lyric[0] + '<break time="500ms"/> ' + lyric[1]+ '</speak>')
 
 
 @ask.intent('AMAZON.NoIntent')
@@ -41,20 +41,33 @@ def say_no():
 
 @ask.intent('AnswerIntent')
 def answer(lyric):
-    sanitised_correct_lyric = sanitise(session.attributes['correct_lyrics'])
-    sanitised_guessed_lyric = sanitise(lyric)
+    correct_lyric = session.attributes['correct_lyric']
     session.attributes['counter'] += 1
 
-    if sanitised_correct_lyric == sanitised_guessed_lyric:
+    if compare_lyric(lyric, correct_lyric):
         session.attributes['win_counter'] += 1
         return question("Correct. Would you like to play another round?")
 
-    return question("Incorrect. The lyrics were " + session.attributes['correct_lyrics'] + ". Would you like to play another round?")
+    return question("Incorrect. The lyrics were " + correct_lyric + ". Would you like to play another round?")
 
 
-def sanitise(text):
-    normal_text = re.sub(r'[^\w]', '', text)
-    return normal_text.lower()
+def sanitise(lyric):
+    lyric = re.sub(r'[\s]', ' ', lyric)
+    lyric_sanitise = re.sub(r'[^\w\s]', '', lyric)
+    return lyric_sanitise.lower()
+
+
+def compare_lyric(user_lyric, correct_lyric):
+    user_lyric_list = sanitise(user_lyric).split(' ')
+    correct_lyric_list = sanitise(correct_lyric).split(' ')
+
+    if len(user_lyric_list)/len(correct_lyric_list) > 0.5:
+        correct_counter = 0
+        for word in user_lyric_list:
+            if word in correct_lyric_list:
+                correct_counter += 1
+        return correct_counter/len(correct_lyric_list) >= 0.65
+    return False
 
 
 if __name__ == '__main__':
