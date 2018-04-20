@@ -48,6 +48,16 @@
                         "no thank you",
                         "no"
                     ]
+                },
+                {
+                    "name": "RepeatIntent",
+                    "slots": [],
+                    "samples": [
+                        "repeat please",
+                        "repeat",
+                        "can you repeat",
+                        "can you repeat that"
+                    ]
                 }
             ],
             "types": [
