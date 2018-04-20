@@ -77,14 +77,14 @@ def answer(lyric):
 
     if compare_lyric(lyric, correct_lyric):
         session.attributes['win_counter'] += 1
-        response = "Correct."
+        response = '<speak> Correct.'
     else:
-        response = "Incorrect. The lyrics were " + correct_lyric+"."
+        response = '<speak> Incorrect. The lyrics were <break time ="500ms"/>' + correct_lyric+'.'
 
     if not session.attributes['songs']:
-        return end_game(response + " You've completed the game. ")
+        return end_game(response + '<break time="500ms"/> You\'ve completed the game. </speak>')
 
-    session.attributes['previous_response'] = response + " Would you like to play another round?"
+    session.attributes['previous_response'] = response + ' <break time="500ms"/> Would you like to play another round?</speak>'
     return question(session.attributes['previous_response'])
 
 
