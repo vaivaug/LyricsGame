@@ -20,12 +20,15 @@ def start_game():
     session.attributes['win_counter'] = 0
     session.attributes['game_state'] = False
     session.attributes['songs'] = [lyrics for lyrics in listdir("data/") if lyrics.endswith(".txt")]
-    return question("Welcome to the Lyrics Game. I will say lines of a song and you will have to say the next line. Would you like to play?")
+    session.attributes['previous_response'] = "Welcome to the Lyrics Game. I will say lines of a song and you will have to say the next line. Would you like to play?"
+    return question(session.attributes['previous_response'])
 
 
 @ask.intent('AMAZON.HelpIntent')
 def help_intent():
-    return question("This is the Lyrics Game. I will say lines of a song and you will have to say the next line. Would you like to play?")
+    session.attributes['previous_response'] = "This is the Lyrics Game. I will say lines of a song and you will have to say the next line. Would you like to play?"
+    session.attributes['previous_response_type'] = "question"
+    return question(session.attributes['previous_response'])
 
 
 @ask.intent('AMAZON.YesIntent')
@@ -36,7 +39,10 @@ def say_yes():
     file = "data/"+random_song()
     lyric = get_lyric(file)
     session.attributes['correct_lyric'] = lyric[2]
-    return question('<speak> Get ready! <break time ="1s"/>' + lyric[0] + '<break time="500ms"/> ' + lyric[1]+ '</speak>')
+    session.attributes['song'] = lyric[3]
+    session.attributes['artist'] = lyric[4]
+    session.attributes['previous_response'] = '<speak> Get ready! <break time ="1s"/>' + lyric[0] + '<break time="500ms"/> ' + lyric[1]+ '</speak>'
+    return question(session.attributes['previous_response'])
 
 
 def random_song():
@@ -65,21 +71,29 @@ def end_game(response):
 @ask.intent('AnswerIntent')
 def answer(lyric):
     if not session.attributes['game_state']:
-        return question("Sorry, I didn't get that. Would you like to play another round?")
+        session.attributes['previous_response'] = "Sorry, I didn't get that. Would you like to play another round?"
+        return question(session.attributes['previous_response'])
     session.attributes['game_state'] = False
     correct_lyric = session.attributes['correct_lyric']
     session.attributes['counter'] += 1
 
     if compare_lyric(lyric, correct_lyric):
         session.attributes['win_counter'] += 1
-        response = "Correct."
+        response = '<speak> Correct.'
     else:
-        response = "Incorrect. The lyrics were " + correct_lyric+"."
+        response = '<speak> Incorrect. The lyrics were <break time ="500ms"/>' + correct_lyric +\
+                   '. The song was ' + session.attributes['song'] + ' by ' + session.attributes['artist'] + '.'
 
     if not session.attributes['songs']:
-        return end_game(response + " You've completed the game. ")
+        return end_game(response + '<break time="500ms"/> You\'ve completed the game. </speak>')
 
-    return question(response + " Would you like to play another round?")
+    session.attributes['previous_response'] = response + ' <break time="500ms"/> Would you like to play another round?</speak>'
+    return question(session.attributes['previous_response'])
+
+
+@ask.intent('RepeatIntent')
+def repeat():
+    return question(session.attributes['previous_response'])
 
 
 def sanitise(lyric):
