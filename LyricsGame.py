@@ -1,5 +1,4 @@
 from flask import Flask
-import json
 import logging
 import re
 from flask_ask import Ask, statement, question, session
@@ -21,7 +20,12 @@ def start_game():
     session.attributes['win_counter'] = 0
     session.attributes['game_state'] = False
     session.attributes['songs'] = [lyrics for lyrics in listdir("data/") if lyrics.endswith(".txt")]
-    return question("Welcome to the Lyrics Game. I will say the first two lines of a song and you will have to say the next line. Would you like to play?")
+    return question("Welcome to the Lyrics Game. I will say lines of a song and you will have to say the next line. Would you like to play?")
+
+
+@ask.intent('AMAZON.HelpIntent')
+def help_intent():
+    return question("This is the Lyrics Game. I will say lines of a song and you will have to say the next line. Would you like to play?")
 
 
 @ask.intent('AMAZON.YesIntent')
@@ -41,6 +45,8 @@ def random_song():
     return current_song
 
 
+@ask.intent('AMAZON.CancelIntent')
+@ask.intent('AMAZON.StopIntent')
 @ask.intent('AMAZON.NoIntent')
 def say_no():
     if session.attributes['game_state']:
@@ -53,7 +59,7 @@ def end_game(response):
     counter = session.attributes['counter']
     if counter > 0:
         return statement(response + "Thanks for playing. You got " + str(win_counter) + " out of " + str(counter) + " correct!")
-    return statement('<speak> Goodbye. <prosody volume="soft"> Why did you start the game then?</prosody>. </speak>')
+    return statement('<speak> Goodbye. <prosody volume="soft"> Why did you start the game then?</prosody> </speak>')
 
 
 @ask.intent('AnswerIntent')
