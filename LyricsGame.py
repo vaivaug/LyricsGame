@@ -39,6 +39,8 @@ def say_yes():
     file = "data/"+random_song()
     lyric = get_lyric(file)
     session.attributes['correct_lyric'] = lyric[2]
+    session.attributes['song'] = lyric[3]
+    session.attributes['artist'] = lyric[4]
     session.attributes['previous_response'] = '<speak> Get ready! <break time ="1s"/>' + lyric[0] + '<break time="500ms"/> ' + lyric[1]+ '</speak>'
     return question(session.attributes['previous_response'])
 
@@ -79,7 +81,8 @@ def answer(lyric):
         session.attributes['win_counter'] += 1
         response = '<speak> Correct.'
     else:
-        response = '<speak> Incorrect. The lyrics were <break time ="500ms"/>' + correct_lyric+'.'
+        response = '<speak> Incorrect. The lyrics were <break time ="500ms"/>' + correct_lyric +\
+                   '. The song was ' + session.attributes['song'] + ' by ' + session.attributes['artist'] + '.'
 
     if not session.attributes['songs']:
         return end_game(response + '<break time="500ms"/> You\'ve completed the game. </speak>')
